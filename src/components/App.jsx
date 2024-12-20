@@ -1,11 +1,20 @@
 import { useState } from 'react'
 import Header from './Header'
-import '../styles/App.css'
 import Card from './Card'
+import '../styles/App.css'
+
+function GameOver({isWin, finalScore, playAgain}) {
+  return (
+      <div>
+          <p>{isWin ? 'Well done!': 'Better luck next time'}</p>
+          <p>Your score: {finalScore}</p>
+          <button onClick={playAgain}>Play Again</button>
+      </div>
+  )
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [pokemons, setPokemons] = useState([
+  const initialPokemons = [
     {
         id: 1,
         name: 'bulbasaur',
@@ -46,26 +55,49 @@ function App() {
         name: 'clefairy',
         isClicked: false
     },
-  ])
+  ]
+  const [pokemons, setPokemons] = useState(initialPokemons)
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0)
+  const [finalScore, setFinalScore] = useState(0)
   
+  const [isWin, setIsWin] = useState()
+  const [isOver, setIsOver] = useState(false)
+
+
+  const playAgain = () => {
+    window.location.reload()
+    console.log(pokemons)
+  }
   const handleCardClick = (pokemon) => {
+    if (isOver) return
     console.log('pokemon clicked: ', pokemon.name)
     if (!pokemon.isClicked) {
+      const newScore = currentScore + 1
       pokemon.isClicked = true
-      shuffleCards();
-      setCurrentScore(currentScore => currentScore += 1)
-    } else if (pokemon.isClicked) {
-      setBestScore(bestScore => bestScore += currentScore)
-      setCurrentScore(0)
+      if (newScore === 8) {
+        setFinalScore(newScore)
+        setBestScore(Math.max(newScore, bestScore))
+        setIsOver(true)
+        setIsWin(true)
+      } else{
+        setCurrentScore(newScore)
+        shuffleCards()
+      }
+    } else {
+      setFinalScore(currentScore)
+      setBestScore(Math.max(currentScore, bestScore))
+      setIsOver(true)
+      setIsWin(false)
     }
     console.log(pokemon)
   }
+ 
   const shuffleCards = () => {
     const shuffled = [...pokemons].sort(() => Math.random() - 0.5)
     setPokemons(shuffled)
   }
+  
 
   return (
     <>
@@ -75,13 +107,15 @@ function App() {
       />
       <Card 
       pokemons={pokemons} 
-      handleCardClick={handleCardClick}/>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      handleCardClick={handleCardClick}
+      />
+      {isOver ? 
+            <GameOver 
+            isWin={isWin}
+            finalScore={finalScore}
+            playAgain={playAgain}
+            />
+      : null}
     </>
   )
 }
