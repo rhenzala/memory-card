@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from './Header'
 import Card from './Card'
 import '../styles/App.css'
@@ -63,11 +63,15 @@ function App() {
   
   const [isWin, setIsWin] = useState()
   const [isOver, setIsOver] = useState(false)
+  const [startIndex, setStartIndex] = useState()
 
 
   const playAgain = () => {
-    window.location.reload()
-    console.log(pokemons)
+    setStartIndex(0)
+    setIsOver(false)
+    setPokemons(initialPokemons)
+    setCurrentScore(0)
+  
   }
   const handleCardClick = (pokemon) => {
     if (isOver) return
@@ -98,6 +102,7 @@ function App() {
     setPokemons(shuffled)
   }
   
+  
 
   return (
     <>
@@ -106,6 +111,8 @@ function App() {
       bestScore={bestScore}
       />
       <Card 
+      isStarted={startIndex === 0}
+      onStart={() => setStartIndex(0)}
       pokemons={pokemons} 
       handleCardClick={handleCardClick}
       />

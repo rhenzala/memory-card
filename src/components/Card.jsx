@@ -24,17 +24,27 @@ function CreateCard({pokemon, handleCardClick}) {
     )
 }
 
-export default function Card({pokemons, handleCardClick}) {
+export default function Card({isStarted, onStart, pokemons, handleCardClick}) {
     
     return (
-        <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]">
-            {pokemons.map(pokemon => 
-            <CreateCard
-            key={pokemon.id} 
-            pokemon={pokemon}
-            handleCardClick={handleCardClick}
-            />
-            )} 
+        <div>
+            {isStarted ?
+            <div className="grid gap-4 grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]">
+                {pokemons.map(pokemon => 
+                <CreateCard
+                key={pokemon.id} 
+                pokemon={pokemon}
+                handleCardClick={handleCardClick}
+                />
+                )} 
+            </div>
+            : <button
+            className="capitalize"
+            onClick={onStart}
+            >
+                start game
+            </button>
+            }
         </div>
     )
 }
