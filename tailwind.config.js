@@ -10,13 +10,15 @@ export default {
       current: "currentColor",
       white: "#f9fafb",
       black: "#030712",
-      gray: "#6b7280",
-      yello: "#ffde00",
+      yellow: "#ffde00",
       blue: "#3b4cca",
       red: "#ef4444",
-      rose: "#f43f5e",
     },
-    extend: {},
+    extend: {
+      screens: {
+        "custom-sm": { max: "768px" },
+      },
+    },
   },
   plugins: [],
 }
