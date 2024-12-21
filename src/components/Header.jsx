@@ -16,7 +16,7 @@ export default function Header({
     bestScore
 }) {
     return (
-        <header>
+        <header className="flex justify-between gap-3 p-4">
             <div className="logo">
                 <h1>PokeMind</h1>
             </div>

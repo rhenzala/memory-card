@@ -39,7 +39,7 @@ export default function Card({isStarted, onStart, pokemons, handleCardClick}) {
                 )} 
             </div>
             : <button
-            className="capitalize"
+            className="capitalize p-3"
             onClick={onStart}
             >
                 start game
