@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    @font-face {
+        font-family: 'Pokemon Hollow';
+        src: url(../assets/fonts/pokemon/PokemonHollow.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: 'Pokemon Solid';
+        src: url(../assets/fonts/pokemon/PokemonSolid.ttf) format('truetype');
+    }
+    @font-face {
+        font-family: 'Retro Gaming';
+        src: url(../assets/fonts/retro_gaming/RetroGaming.ttf) format('truetype');
+    }
+    header h1{
+        font-family: 'Pokemon Solid';
+        font-size: 46px;
+        color: #ffde00;
+        text-shadow: -3px -3px 0 #3b4cca, 3px -3px 0 #3b4cca, -3px 3px 0 #3b4cca, 2px 2px 0 #3b4cca;
+        letter-spacing: 3px;
+    }
+    body {
+        font-family: 'Retro Gaming';
+    }
+}
