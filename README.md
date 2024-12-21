@@ -1,8 +1,7 @@
-# React + Vite
+# Memory Card Game
+## Description
+A simple memory card game using the <a href="https://pokeapi.co/">PokeAPI</a> to get the image of pokemons and display them in a card. The player have to click on a card to get points, but clicking more than once would mean the game is lost. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Attribution
+Fonts are from <a href="https://www.dafont.com/">Dafont </a>.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
