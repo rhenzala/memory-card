@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Header from './Header'
 import Card from './Card'
 import '../styles/App.css'
 
 function GameOver({isWin, finalScore, playAgain}) {
   return (
-      <div>
-          <p>{isWin ? 'Well done!': 'Better luck next time'}</p>
-          <p>Your score: {finalScore}</p>
-          <button onClick={playAgain}>Play Again</button>
-      </div>
+      <dialog className='z-50 top-[10%] left-[20%] right-[20%] bg-white border-black border-2 border-solid px-6 py-8 h-[300px] flex flex-col items-center justify-between custom-sm:left-[10%] custom-sm:right-[10%]'>
+          <p className='text-3xl'>{isWin ? 'Well done!': 'Better luck next time'}</p>
+          <p className='text-xl'>Your score: {finalScore}</p>
+          <button
+          className='bg-yellow border-blue border-2 border-solid text-center text-blue p-3 font-medium' 
+          onClick={playAgain}
+          >
+            Play Again
+          </button>
+      </dialog>
   )
 }
 
@@ -55,6 +60,16 @@ function App() {
         name: 'clefairy',
         isClicked: false
     },
+    {
+      id: 9,
+      name: 'caterpie',
+      isClicked: false
+    },
+    {
+      id: 10,
+      name: 'omastar',
+      isClicked: false
+    },
   ]
   const [pokemons, setPokemons] = useState(initialPokemons)
   const [currentScore, setCurrentScore] = useState(0);
@@ -79,7 +94,7 @@ function App() {
     if (!pokemon.isClicked) {
       const newScore = currentScore + 1
       pokemon.isClicked = true
-      if (newScore === 8) {
+      if (newScore === pokemons.length) {
         setFinalScore(newScore)
         setBestScore(Math.max(newScore, bestScore))
         setIsOver(true)
@@ -105,7 +120,7 @@ function App() {
   
 
   return (
-    <>
+    <div>
       <Header 
       currentScore={currentScore}
       bestScore={bestScore}
@@ -123,7 +138,7 @@ function App() {
             playAgain={playAgain}
             />
       : null}
-    </>
+    </div>
   )
 }
 
